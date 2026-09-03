@@ -16,15 +16,17 @@ const fs = require("fs");
 
 function func(){
     return new Promise(function(resolve) {
-        fs.readFile("a.txt", "utf-8", function(err, data){
-            console.log("Not resolved yet") // 3;
-            resolve(data); // sync returns promise not data
-            // hun resolve hon to baad calling; read(data)
-            // just like callback(data); read(data);
-            // resolve will now call read(data);
-            // coz we send read to Promise.then(read);
-            console.log("after resolve"); // 4;
-        });
+        fs.readFile("a.txt", "utf-8", 
+            function(err, data){
+                console.log("Not resolved yet") // 3;
+                resolve(data); // sync returns promise not data
+                // hun resolve hon to baad calling; read(data)
+                // just like callback(data); read(data);
+                // resolve will now call read(data);
+                // coz we send read to Promise.then(read);
+                console.log("after resolve"); // 4;
+            }
+        );
     });
 }
 
