@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function getData() {
+        fetch("https://randomuser.me/api")
+        .then(function (response) {
+            response.json()
+            .then(function(finalData) {
+                console.log(finalData); // 2
+            });
+            console.log(response); // 1
+        });
+        // console.log(response);
+      }
+
+      async function getData2() {
+        const res = await fetch("https://randomuser.me/api");
+        console.log(res)
+        const data = await res.json();
+        console.log(data);
+
+        document.getElementById("showData").innerHTML = JSON.stringify(data)
+      }
+
+    </script>
+
+    <div id="showData"></div>
+    <button onclick="getData2()">Get Data</button>
+  </body>
+</html>
