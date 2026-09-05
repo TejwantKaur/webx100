@@ -1,7 +1,5 @@
-npm install zod
-npm install jsonwebtoken
-
-
+- npm install zod
+- npm install jsonwebtoken
 
 
 # JWT's
