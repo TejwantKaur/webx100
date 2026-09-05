@@ -1,0 +1,1 @@
+mongodb+srv://kaurtejwant998_db_user:U3UPOV2YnaKHAU6A@zerodhaclonecluster.aagbx0g.mongodb.net/
