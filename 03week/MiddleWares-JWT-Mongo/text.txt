@@ -1,4 +1,0 @@
-npm install zod
-
-
-mongodb+srv://kaurtejwant998_db_user:U3uPov2YnaKHAU6A@cluster0.1vfzbyb.mongodb.net/
