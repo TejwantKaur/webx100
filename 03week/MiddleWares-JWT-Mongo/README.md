@@ -2,8 +2,7 @@ npm install zod
 npm install jsonwebtoken
 
 
-# mongo
-mongodb+srv://kaurtejwant998_db_user:U3uPov2YnaKHAU6A@cluster0.1vfzbyb.mongodb.net/
+
 
 # JWT's
 1. func that takes username and pass; returns jwt token, with username encoded in object;
