@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <script>
+        let globalId = 1;
+        function markDone(id) { // pura parent e aaya hai
+            const parent = document.getElementById(id);
+            parent.children[2].innerHTML = "Done!"; // 0 title; 1 desc; 2 btn
+        }
+
+        function createChild(title, desc, id) {
+            const child = document.createElement("div")
+            
+            const titleDiv = document.createElement("div"); // title
+            titleDiv.innerHTML = title;
+            child.appendChild(titleDiv);
+
+            const descDiv = document.createElement("div"); // desc
+            descDiv.innerHTML = desc;
+            child.appendChild(descDiv);
+
+            const editBtn = document.createElement("button");
+            editBtn.innerHTML = "Edit"
+            editBtn.setAttribute("onclick", `editTodo(${id})`)
+            child.appendChild(editBtn)
+            
+            const doneBtn = document.createElement("button");
+            doneBtn.innerHTML = "Mark Done";
+            doneBtn.setAttribute("onclick", `markDone(${id})`) // onclick="markDone(1)"
+            child.appendChild(doneBtn);
+
+            child.setAttribute("id", id); // id="1"
+            return child;
+        }
+
+        function addTodo() {
+            const title = document.getElementById("title").value;
+            const desc = document.getElementById("desc").value;
+            const parent = document.getElementById("parent")
+
+            // console.log(title); console.log(desc);          
+            // outerDiv.innerHTML = title;
+
+            // document.getElementById("parent").appendChild(outerDiv);
+            parent.appendChild(createChild(title, desc, globalId++))
+        }
+
+        function editTodo(id){
+            const utitle = document.getElementById("utitle").value;
+            const udesc = document.getElementById("udesc").value;
+
+            const parent = document.getElementById(id);
+
+            parent.children[0].innerHTML = utitle;
+            parent.children[1].innerHTML = udesc;
+        }
+
+    </script>
+    <div class="container">
+        <div class="form-container">
+            <!-- <form action="" class="create-form"> -->
+                <div>
+                    <input type="text" placeholder="Title" id="title"> 
+                    <input type="text" placeholder="Description" id="desc"> 
+                    <button onclick=addTodo()>Add+</button>
+                </div>
+
+                <div>
+                    <input type="text" placeholder="Title" id="utitle"> 
+                    <input type="text" placeholder="Description" id="udesc"> 
+                    <button onclick=addTodo()>Edit</button>
+                </div>
+            <!-- </form> -->
+        
+        <div id="parent"></div>
+
+        <!-- structure; -->
+        <!-- <div class="body">
+                <div>title</div>
+                <div>description</div>
+                <button></button>
+        </div> -->
+
+        </div>
+    </div>
+
+    <!-- <script src="script.js"></script> -->
+</body>
+</html>
