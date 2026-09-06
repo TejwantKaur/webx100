@@ -10,6 +10,11 @@ function ageConfirm(req, res, next){
 
 app.use(ageConfirm); // only work for the routes below it;
 
+// without app.use(), pass func in every route
+// app.get("/ride1", ageConfirm, function(req, res){
+//     res.json({msg: "you got ticket for ride1"}) 
+// })
+
 app.get("/ride1", function(req, res){
     res.json({msg: "you got ticket for ride1"})
     
