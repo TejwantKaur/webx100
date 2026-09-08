@@ -1,3 +1,5 @@
+
+
 admins can sign up; create courses;
 users can sign up; view and purchase courses
 
