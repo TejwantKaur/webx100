@@ -1,0 +1,24 @@
+.display-todos{
+    margin: 1rem;
+    margin-left: 4rem;
+    padding: 0;
+    display: flex;
+}
+
+.text{
+    width: 70%;
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+}
+
+h4, p { margin: 0;}
+
+.todoBtn{
+    padding: 0.5rem 0.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    background-color: cadetblue;
+    color: whitesmoke;
+}
+
