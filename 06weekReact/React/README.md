@@ -1,0 +1,10 @@
+- React Dev Tools extension
+
+- create differnet component to avoid re-render
+- memo (lets us skip re-rendering)
+- basic todos, useState, todos.mao to show on screen
+- key required; 
+- <CardWrapper> hi there 1 </CardWrapper> jo vi ede ander likange it will get pass to the function as {children}
+- todo fetch (static data); 
+- useEffect so that fetch nu ek war e call jaye; 
+- done on randomusergeneratoe; added set interval to call the calls; after every 5 or 10 secs; refreshes all the data;
