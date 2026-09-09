@@ -2,9 +2,13 @@ const express = require("express")
 const app = express();
 const { createTodo, updateTodo } = require("./types")
 const { Todo } = require("./db")
+const cors = require("cors")
 
 // middleware
 app.use(express.json());
+app.use(cors(
+    // { origin: "http://localhost:5173/" } // only allowed url to hit
+))
 
 // view all todos
 app.get('/todos', async (req, res)=>{
@@ -16,7 +20,7 @@ app.post('/todos', async (req, res)=>{
     const input = req.body;
     const parseInput = createTodo.safeParse(input);
     if(!parseInput.success){ 
-        res.status(411).json({ msge: "Input must be String" }) 
+        res.status(411).json({ msge: "Input must be String and minLen=3"}) 
         return;
     }
     // put in mongo
