@@ -12,13 +12,17 @@ function App09Input() {
     //     console.log(val*(val+1))
     //     setSum((val*(val+1))/2)
     // }
-
+    
+    console.log()
+    // useEffect doesnt returns value;
+    // useMemo returns the value;
     const sum = useMemo(()=>{
         let parsedInput = parseInt(input)
         return (parsedInput*(parsedInput+1))/2 // n*n+1/2
     }, [input]) // runs only when input val changes; due to memo
     // now doesnt render when counter is re-rendered;
 
+    
     return ( 
         <div>
             <input type="text" onChange={(e)=> setInput(e.target.value)}/>
