@@ -1,4 +1,5 @@
 - React Dev Tools extension
+- npm install axios
 
 - create differnet component to avoid re-render
 - memo (lets us skip re-rendering)
