@@ -2,7 +2,6 @@ import { RecoilRoot, useRecoilState, useRecoilValue } from "recoil";
 import { notificationsAtom2, totalCountSelector2 } from "./atoms2";
 import { useEffect } from "react";
 
-
 function App() {
   return ( 
     <RecoilRoot>
