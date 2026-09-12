@@ -1,43 +1,39 @@
-// linkedin top notification dynamic bar, +4 msges;
-import { RecoilRoot, useRecoilValue, useRecoilState } from "recoil";
-import { jobAtom, messagingAtom, networkAtom, notificationAtom, totalCountSelector } from "./atom";
-import { useMemo } from "react";
+import { RecoilRoot, useRecoilState, useRecoilValue } from "recoil";
+import { notificationsAtom2, totalCountSelector2 } from "./atoms2";
+import { useEffect } from "react";
+
 
 function App() {
-  return(
+  return ( 
     <RecoilRoot>
       <MainApp/>
     </RecoilRoot>
-  )
+   );
 }
 
 function MainApp(){
-  const ntwCount = useRecoilValue(networkAtom);
-  const finalVal = ntwCount >= 100 ? "99+": ntwCount
-  const jobCount = useRecoilValue(jobAtom)
-  const msgeCount = useRecoilValue(messagingAtom)
-  const [notificationCount, setNotificationCount] = useRecoilState(notificationAtom)
-  
-  // const totalVal = useMemo(()=>{
-  //   return ntwCount+ jobCount + msgeCount + notificationCount;
-  // } ,[ntwCount, jobCount, msgeCount, notificationCount]) 
-  // jdo v koi var change; only odo cal kero totalVal;
-  const totalCount = useRecoilValue(totalCountSelector);
+  const [notifications, setNotifications] = useRecoilState(notificationsAtom2)
+  const totalCount = useRecoilValue(totalCountSelector2)
 
-  return ( 
-    <div>
+  // useEffect(()=>{
+  //   // fetch
+  //   axios.get("http://localhost:3000/notifications")
+  //   .then((res) => { 
+  //     setNotifications(res.data)
+  //   })
+  // }, [])
+
+  return(
+    <>
       <button>Home</button>
-      <button>My Network ({finalVal})</button>
-      <button>Jobs ({jobCount})</button>
-      <button>Messaging ({msgeCount})</button>
-      <button>Notifications ({notificationCount})</button>
-      <button>Me ({totalCount}) </button>
-
-      <button onClick={()=>{
-        setNotificationCount((c)=> c+1)
-      }}>notification+</button>
-    </div>
-   );
+      <button>My Network ({notifications.network>=100? "99+": notifications.network}) </button>
+      <button>Jobs ({notifications.jobs})</button>
+      <button>Messaging ({notifications.msges})</button>
+      <button>Notifications ({notifications.notification>=100? "99+":notifications.notification})</button>
+      <button>Me ({totalCount})</button>
+    </>
+  )
 }
+
 
 export default App;
