@@ -5,19 +5,21 @@ import Heading from "../components/Heading";
 import InputBox from "../components/InputBox";
 import SubHeading from "../components/Subheading";
 
-import axios from 'axios'
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Signup() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  // will send these for signup;
+  const navigate = useNavigate();
 
   return (
     <div className="bg-slate-300 h-screen flex justify-center">
       <div className="flex flex-col justify-center">
         <div className="rounded-lg bg-white w-120 text-center p-2 h-max px-4">
-          
           <Heading label={"Signup"} />
           <SubHeading label={"Create Account"} />
 
@@ -44,15 +46,19 @@ function Signup() {
 
           <div className="pt-4">
             {" "}
-            <Button onClick={async() => {
-              const response = await axios.post(
-                "http://localhost:3000/api/v1/user/signup",
-                { username, password, firstName, lastName } // body
-              );
-              localStorage.setItem("token", response.data.token)
-              // localStorage.removeItem("token")
-            }}
-            label={"Signup"} />{" "}
+            <Button
+              onClick={async () => {
+                console.log({ username, password, firstName, lastName });
+                const response = await axios.post(
+                  "http://localhost:3000/api/v1/user/signup",
+                  { username, password, firstName, lastName }, // body
+                );
+                localStorage.setItem("token", response.data.token);
+                // localStorage.removeItem("token")
+                navigate("/dashboard");
+              }}
+              label={"Signup"}
+            />{" "}
           </div>
           <Bottom
             label={"Already have an account?"}

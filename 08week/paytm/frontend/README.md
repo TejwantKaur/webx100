@@ -22,3 +22,9 @@
 - npm i axios
   - to make a post request; send all input data from form to axios.post(/signup) route
   - store the token recieved
+
+## Dashboard;
+- show all users; make sure donot show yourself;
+- { useNavigate } from "" hook to navigate using onClick()
+- react router dom; get access to query params;
+- { useSearch params } from ""
