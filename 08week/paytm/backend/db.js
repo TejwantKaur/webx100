@@ -2,10 +2,16 @@ const mongoose = require("mongoose");
 const { Schema } = require("mongoose");
 const mongo_url = "mongodb+srv://kaurtejwant998_db_user:D1gYKtJptyafhpAN@paytmcluster.ina5mgz.mongodb.net/Paytm"
 
-async function connectDB(){
-  await mongoose.connect(mongo_url);
-  console.log("DB Connected!")
-}
+// async function connectDB(){
+  try {
+    await mongoose.connect(mongo_url);
+    console.log("DB Connected!")
+  }
+  catch(err){
+    console.log("Couldn't connect to DB ")
+    console.error(err.message)
+  }
+// }
 
 //   async function connectDB() {
 //     await mongoose.connect(MONGO_URL);
@@ -29,25 +35,26 @@ const userSchema = new Schema({
     minLength: 3,
     maxLength: 30,
   },
+
   password: {
     type: String,
     required: true,
-    minLength: 6,
+    minLength: 4,
     maxLength: 30,
   },
+
   firstName: {
     type: String,
     required: true,
     trim: true,
-    lowercase: true,
     minLength: 3,
     maxLength: 30,
   },
+
   lastName: {
     type: String,
     required: true,
     trim: true,
-    lowercase: true,
     minLength: 3,
     maxLength: 30,
   },
@@ -56,6 +63,7 @@ const userSchema = new Schema({
 // another db that will store the balance of user in mongo db;
 const accountSchema = new mongoose.Schema({
   userId: {
+    // useId jo mongo e bnonda ohi vali;
     type: mongoose.Schema.Types.ObjectId, // id stored in mongoose as object id's
     ref: 'User', // ensures userId must belong to User table; only then we can add balance;
     required: true
