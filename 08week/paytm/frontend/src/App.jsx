@@ -6,7 +6,6 @@ import Dashboard from "./pages/Dashboard";
 import SendMoney from "./pages/SendMoney";
 
 function App() {
-  
   return (
     <BrowserRouter>
       <Routes>

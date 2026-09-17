@@ -8,3 +8,17 @@
     - /send
 
 - flowbite buttons tailwind css;
+
+### tailwind
+- npm install tailwindcss @tailwindcss/vite
+- vite.config.js
+    import tailwindcss from '@tailwindcss/vite'
+    plugins: [ react(), tailwindcss(),] 
+
+- App.css @import "tailwindcss";
+
+### Signup
+- 4 state variables for input boxes
+- npm i axios
+  - to make a post request; send all input data from form to axios.post(/signup) route
+  - store the token recieved
