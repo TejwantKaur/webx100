@@ -41,15 +41,19 @@ router.post("/signup", async (req,res) => {
     //     lastName: req.body.lastName,
     // })
 
-    const userId = dbUser._id
+    const userId = dbUser._id;
     await Account.create({
         userId,
         balance: 1 + Math.random() * 10000
     })
 
     // not hashing passwords, just allowing authentication;
+    // userId through verify ker rhe token in middleware;
     const token = jwt.sign({ userId: dbUser._id }, JWT_SECRET) // token is created; userId: 
     // try: const token = jwt.sign({ dbUser._id }, JWT_SECRET) // token is created; userId: 
+
+    console.log(`Signup successfully!`)
+    console.log(`token: ${token}`)
 
     res.json({ 
         msge: "Profile created successfully", 
@@ -64,17 +68,13 @@ const signinSchema = zod.object({
     password: zod.string()
 })
 router.post("/signin", async(req, res) => {
-    const { success } = signinSchema.safeParse(req.body)
-    if(!success){
-        return res.status(411).json({ msge: "incorrect credentials" })
-    }
+    const { success } = signinSchema.safeParse(req.body);
+    if(!success){ return res.status(411).json({ msge: "incorrect credentials" });}
 
     const { username, password } = req.body;
 
     // user sends username and password; so use them to find;
-    const user = await User.findOne({
-        username, password
-    })
+    const user = await User.findOne({ username, password });
     const userId = user._id; // from db
 
     // if(user){
@@ -93,6 +93,9 @@ router.post("/signin", async(req, res) => {
     }
     // verify token
     const token = jwt.sign({ userId }, JWT_SECRET)
+    console.log(`Signedin successfully!`)
+    console.log(`token: ${ token }`)
+
     res.json({ 
         msge:"Signedin successfully!", 
         token: token 
@@ -111,15 +114,16 @@ router.put("/", authMiddleware, async(req, res) => {
     if(!success) res.status(411).json({ msge: "incorrect credentials" })
     
     // User.updateOne(findPerson, work)
-    await User.updateOne({ _id: req.userId }, req.body) // why id?
+    await User.updateOne({ _id: req.userId }, req.body) // why id? coz db has _id
     res.json({ msge: "Updated Successfully!"})
 
 })
 
 // getting data of all users existing currently;
-router.get("/bulk", async(req, res) => {
+// authMiddleware add this layer;
+router.get("/bulk", authMiddleware, async(req, res) => {
     const filter = req.query.filter || "";  // getting query parameter nd then sending;
-    // if nothing; then search empty space which every user has;
+    // if nothing; then search empty space which every user has; so all users appear
 
     // %har%... jithe jithe v har in (first or last) present show all; 
     const users = await User.find({
@@ -130,7 +134,7 @@ router.get("/bulk", async(req, res) => {
     })
 
     // shows users; having har in first or lastNames;
-    res.json({
+    res.json({ // now we can use response.data.user
         user: users.map(user => ({
             username: user.username,
             firstName: user.firstName,

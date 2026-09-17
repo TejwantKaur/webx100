@@ -14,19 +14,19 @@ const authMiddleware = (req, res, next) => {
     // verify
     try { 
         const verified = jwt.verify(jwtToken, JWT_SECRET)
-        console.log("Verified", verified)
+        console.log("Token Verified! authenticated! You r signedin", verified)
         
         if(verified.userId){ // id
             // send username, in req, so that it is accessable after this middleware
-            req.userId = verified.userId;
-            next()
+            req.userId = verified.userId; // send in req
+            next();
         } else {
-            console.log("No user ID")
-            return res.status(403).json({})
+            console.log("Token is valid! but it does'nt have userID");
+            return res.status(403).json({});
         }
     } catch (err) {
         res.status(403).json({err})
     }
 }
 
-module.exports = {authMiddleware};
+module.exports = { authMiddleware };

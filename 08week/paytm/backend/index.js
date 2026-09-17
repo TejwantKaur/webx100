@@ -1,13 +1,13 @@
 const express = require("express");
 const mainRouter = require("./routes/index");
 const cors = require("cors");
-const { connectDB } = require("./db")
+// const { connectDB } = require("./db")
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-connectDB();
+// connectDB();
 
 app.use("/api/v1", mainRouter);
 // after this breakpoint go to mainRouter

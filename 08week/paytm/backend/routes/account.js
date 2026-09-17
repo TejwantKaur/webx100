@@ -18,16 +18,27 @@ router.post("/transfer", authMiddleware, async (req, res) => {
     const fromId = req.userId;
     const { amount, toId } = req.body;
 
+    // console.log("fromId:", fromId);
+    // console.log("toId:", toId);
+    // console.log("amount:", amount);
+
+    // session as the ID/card that tells MongoDB which transaction this operation belongs to.
     const fromAccount = await Account.findOne({ userId: fromId }).session(
       session,
-    );
+    ); // this means it belongs to the particular session;
+    //  Without .session(session): it is just a normal database operation.
+
+    console.log("fromAccount:", fromAccount);
+
     if (!fromAccount || fromAccount.balance < amount) {
       // amount to be sent
       await session.abortTransaction();
       return res.status(400).json({ msge: "Insufficient Balance" });
     }
 
-    const toAccount = await Account.findOne({ userId: toId }).session(session);
+    const toAccount = await Account.findOne({ userId: toId }).session(session); // part of the same transaction
+    console.log("toAccount:", toAccount);
+
     if (!toAccount) {
       await session.abortTransaction();
       return res.status(400).json({ msge: "Account doesn't Exists! " });
@@ -43,7 +54,7 @@ router.post("/transfer", authMiddleware, async (req, res) => {
   } 
   catch (err) {
     await session.abortTransaction();
-    return res.status(400).json({ err });
+    return res.status(400).json({ msge: err.message });
   }
   finally {
     session.endSession();
