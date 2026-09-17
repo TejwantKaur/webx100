@@ -2,23 +2,14 @@ const express = require('express')
 const cors = require('cors')
 const app = express();
 
-app.use(cors({
-    origin: "http://localhost:5173"
-}));
+app.use(cors());
 
-// app.use(cors())
-
-app.get('/notifications', (req, res)=>{
-    const network = Math.floor(Math.random()*200)
-    const jobs = Math.floor(Math.random()*50)
-    const msges = Math.floor(Math.random()*50)
-    const notification = Math.floor(Math.random()*200)
-
-    res.json({ network, jobs, msges, notification})
+app.get("/", (req, res)=>{
+    res.send("App Working")
 })
 
 app.get("/todos", (req, res)=> { 
-    const count = Math.floor(Math.random() * 8);
+    const count = 1 + Math.floor(Math.random() * 8);
 
     const todos = [];
     for(let i=1; i<=count; i++){
@@ -34,7 +25,6 @@ app.get("/todos", (req, res)=> {
 })
 
 app.get("/todos/:id", (req, res)=>{
-    // const id = Math.floor(Math.random()*100)
     const id = body.params
     res.json({
         todo: {
@@ -46,6 +36,7 @@ app.get("/todos/:id", (req, res)=>{
     })
 })
 
-app.listen(3000, (req, res)=>{
-    console.log("app listening at 3000")
+const PORT = 3000;
+app.listen(PORT, ()=>{
+    console.log(`App listening at ${PORT}`)
 })
