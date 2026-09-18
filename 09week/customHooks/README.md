@@ -13,3 +13,9 @@
   - return function in useEffect; jera ke always pehla chlda; also called cleanup function
 
 - useSWR from 'swr'; which helps us to create our hooks;
+
+
+### Debouncing;
+- donot send request immediately; wait for the person to write full word; 
+- like wait for 500ms check if user is not typing fornow; 
+- send req to backend and then do filter;
