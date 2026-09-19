@@ -26,7 +26,7 @@
 // const value = sum(3,4)
 // console.log(value);
 
-function isLegal(age: number): boolean{
+function isLegal(age: number): boolean {
     // return age>18? true: false;
     console.log(age>18);
     return age > 18;

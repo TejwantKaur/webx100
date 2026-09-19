@@ -1,0 +1,1 @@
+{"version":"7.0.2","root":["./src/01a.ts","./src/02interface.ts","./src/03todo.tsx","./src/04classinterface.ts","./src/05types.ts","./src/06arrays.ts","./src/07enums.ts","./src/08generics.ts"],"packageJsons":["./package.json"]}
