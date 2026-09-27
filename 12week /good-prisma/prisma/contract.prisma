@@ -1,0 +1,39 @@
+// use prisma-8
+// no datasource block, no generator block. 
+
+// schema of Db;
+// how database look like;
+
+//  schema;
+model User {
+    id          Int     @id @default(autoincrement())
+    username    String  @unique
+    password    String
+    firstName   String?   // optional
+    lastName    String?   // optional
+    email       String  @unique
+    todos       Todo[]
+}
+
+model Todo {
+    id          Int     @id @default(autoincrement())
+    title       String
+    description String
+    done        Boolean @default(false)
+    userId      Int
+    user        User    @relation(fields:[userId], references: [id])
+}
+
+// npx prisma contract emit
+// npx prisma db init
+
+// For next time 
+// npx prisma contract emit
+// npx prisma migration plan --name todos_relation
+// npx prisma db migrate --advance-ref db
+
+//  rm -rf migrations
+//  docker exec -it my-postgres psql -U postgres
+
+
+// npx prisma migrate dev --name init 
