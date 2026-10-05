@@ -1,0 +1,27 @@
+// use prisma-8
+
+model User{
+    id          String      @id @default(uuid())
+    email       String      @unique
+    username    String      @unique
+    password    String
+    todos       Todo[]
+}
+
+model Todo{
+    id          String      @id @default(uuid())    
+    title       String
+    description String
+    done        Boolean     @default(false)
+    userId      String
+    user        User        @relation(fields: [userId], references: [id])
+}
+
+// db init for 1st time;
+// npx prisma contract emit
+// npx prisma db init; talks to your database.
+
+// For next time 
+// npx prisma contract emit
+// npx prisma migration plan --name todos_relation
+// npx prisma db migrate --advance-ref db

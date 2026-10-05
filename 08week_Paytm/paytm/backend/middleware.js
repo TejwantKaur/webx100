@@ -14,6 +14,7 @@ const authMiddleware = (req, res, next) => {
     // verify
     try { 
         const verified = jwt.verify(jwtToken, JWT_SECRET)
+        // no need of if(verified)
         console.log("Token Verified! authenticated! You r signedin", verified)
         
         if(verified.userId){ // id

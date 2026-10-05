@@ -2,13 +2,18 @@ Init a new TS Express project
 (npm init, tsconfig, express, @prisma/client, prisma, zod, jsonwebtoken, dotenv, types for all).
 
 ### prisma
+- npm init -y
+- npm pkg set type=module
 - npm install @prisma/orm-postgres dotenv
 - npm install --save-dev prisma tsx typescript @types/node
 
 - npx tsc --init
 
 - tsconfig.json: "types": ["node"]
-- add "include": ["src/**/*"]
+- // add "include": ["src/**/*"]
+- "types": ["node"],
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
 
 - create src > index.ts;
 
@@ -38,6 +43,36 @@ Init a new TS Express project
 ### tables created;
 - docker exec -it crud-app-db psql -U postgres -d crud-app -c "\dt"
 
-
 ### Task 2: Auth routes — Signup & Login
-- create components
+- index.js;
+- apply zod
+- npm i express jsonwebtoken zod uuid bcrypt
+- npm i --save-dev @types/express @types/jsonwebtoken @types/bcrypt
+- npx tsx index.ts
+
+{
+  "email" : "testing2@gmail.com",
+  "password" : "123456",
+  "username" : "user"
+}
+
+- docker exec -it crud-app-db psql -U postgres -d crud-app
+- \dt
+- Select * from "User"
+- q
+- \pset pager off
+
+- jwt.sign()
+ 
+- middleware
+
+### Task 3, Part B: Protected Todo routes
+- npx tsx watch index.ts
+
+- npm i cors
+- npm i -D @types/cors
+
+### Front-end;
+- npm create vite@latest client
+- npm i axios react-router-dom recoil
+- App.css @import "tailwindcss";

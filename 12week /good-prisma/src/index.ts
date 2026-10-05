@@ -87,7 +87,7 @@ async function getTodoNdUser(userId: number){
 
 async function getUserAndTodos(id: number) {
     const user = await db.orm.public.User
-        .where({id: id})
+        .where({ id: id })
         .select(
             "id",
             "username",

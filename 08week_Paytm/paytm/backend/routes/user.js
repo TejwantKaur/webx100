@@ -67,6 +67,7 @@ const signinSchema = zod.object({
     username: zod.email(),
     password: zod.string()
 })
+
 router.post("/signin", async(req, res) => {
     const { success } = signinSchema.safeParse(req.body);
     if(!success){ return res.status(411).json({ msge: "incorrect credentials" });}
@@ -91,7 +92,7 @@ router.post("/signin", async(req, res) => {
     if(!user) { 
         return res.status(411).json({ msge: 'wrong email & password' }) 
     }
-    // verify token
+    // create token of login user; hun eh token auth ch check hoyega
     const token = jwt.sign({ userId }, JWT_SECRET)
     console.log(`Signedin successfully!`)
     console.log(`token: ${ token }`)

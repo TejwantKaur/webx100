@@ -26,7 +26,7 @@ router.post('/signin', async(req, res) => {
         const token = jwt.sign({ username }, JWT_SECRET)
         res.json({ token })
     } else {
-        res.json({msge: 'wrong email & password'})
+        res.json({ msge: 'wrong email & password' })
     }
 })
 // POST http://localhost:3000/user/signin

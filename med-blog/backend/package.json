@@ -1,0 +1,26 @@
+{
+  "name": "backend",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy --minify",
+    "cf-typegen": "wrangler types --env-interface CloudflareBindings"
+  },
+  "dependencies": {
+    "@prisma/orm-postgres": "^8.0.0-rc.13",
+    "dotenv": "^18.0.4",
+    "hono": "^4.13.11"
+  },
+  "devDependencies": {
+    "prisma": "^8.0.0-rc.19",
+    "tsx": "^4.23.15",
+    "typescript": "^6.0.3",
+    "wrangler": "^4.110.0"
+  },
+  "version": "1.0.0",
+  "description": "```txt npm install npm run dev ```",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

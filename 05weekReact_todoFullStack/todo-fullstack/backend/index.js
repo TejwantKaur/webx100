@@ -45,6 +45,6 @@ app.put('/completed', async (req, res)=>{
 })
 
 const PORT = 3000
-app.listen(PORT, (req,res)=>{
+app.listen(PORT, (req,res) => {
     console.log(`app listening on ${PORT}`)
 })
