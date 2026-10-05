@@ -60,7 +60,7 @@ function Auth({ type }: { type: "signup" | "signin" }) {
             {type == "signup" ? (
             <InputBox
               label="Username"
-              placeholder="harshita"
+              placeholder="usernsme"
               onChange={(e) => {
                 setPostInputs({ ...postInputs, username: e.target.value });
               }}
