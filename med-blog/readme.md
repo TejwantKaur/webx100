@@ -59,3 +59,19 @@ app.get("/users", async (c) => {
 ### Deploy
 - npx wrangler secret list // both secrets exists
 - npx wrangler deploy
+
+### zod
+- in common
+- how will backend accend zod present in common
+
+- npm install flowbite
+- npm install flowbite-react
+- flowbite docs and then paste;
+
+### axios
+- npm i axios
+
+### hono cors
+
+- npm run deploy
+- set jwt in local storage;

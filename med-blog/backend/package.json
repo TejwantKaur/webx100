@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@prisma/orm-postgres": "^8.0.0-rc.13",
+    "@techaura/med-blog-common": "^1.0.0",
     "dotenv": "^18.0.4",
     "hono": "^4.13.11"
   },
