@@ -1,0 +1,32 @@
+// use prisma-8
+// no datasource block, no generator block. 
+
+model User {
+  id       Int    @id @default(autoincrement())
+  username String @unique
+  password String
+  firstName String
+  lastName  String
+  todos     Todo[]
+}
+
+// npx prisma contract emit
+// npx prisma db init
+
+
+model Todo { // Todo table created with a foreign key to User.
+  id Int @id @default(autoincrement())
+  title       String
+  description String
+  done        Boolean @default(false)
+  userId      Int
+  user        User    @relation(fields: [userId], references: [id])
+}
+
+// npx prisma contract emit
+
+// npx prisma migration plan --name add_todo (just labels the migration folder (20260924T0707_add_todo))
+
+// npx prisma db migrate --advance-ref db; goes to db also;
+// plan = write the diff, db migrate --advance-ref db = apply it + mark the database as up to date.
+
