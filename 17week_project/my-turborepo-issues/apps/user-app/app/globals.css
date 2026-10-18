@@ -1,0 +1,14 @@
+@import "tailwindcss";
+@import "@repo/tailwind-config";
+
+@source "../../../packages/ui/src";
+
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
